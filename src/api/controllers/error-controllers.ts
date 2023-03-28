@@ -1,10 +1,13 @@
 import { ErrorRequestHandler, RequestHandler } from "express";
+import { getJSONRes } from "../../types";
 
 export const get404: RequestHandler = (req, res, next) => {
-    res.status(404).send('404')
+    const toSend = getJSONRes(req, { success: false, status: 404, messsage: 'Not Found' })
+    res.status(toSend.status).send(toSend)
 }
 
 export const get500: ErrorRequestHandler = (err, req, res, next) => {
     console.log(err);
-    res.status(500).send('500')
+    const toSend = getJSONRes(req, { success: false, status: 500, messsage: 'Internal server Error' })
+    res.status(toSend.status).send(toSend)
 }
