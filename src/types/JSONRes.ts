@@ -10,7 +10,7 @@ export interface IHTTPRes {
     status: number
     messsage?: string
     path?: string
-    result?: Array<object> | object
+    data?: Array<object> | object
 }
 
 export const getJSONRes = (req: Request, params: IHTTPRes): IHTTPRes => {
