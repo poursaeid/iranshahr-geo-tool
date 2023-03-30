@@ -3,6 +3,7 @@
  */
 
 interface ILocals {
+    cities: object
 }
 
 declare namespace Express {
