@@ -4,7 +4,7 @@ import { mainApiController } from "../controllers";
 const router = Router()
 
 /* Base path : /api */
-router.use('/', mainApiController)
+router.get('/', mainApiController)
 router.use('/cities', require('./cities-routes'))
 
 export default router

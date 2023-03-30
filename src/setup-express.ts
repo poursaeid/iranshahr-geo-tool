@@ -10,8 +10,6 @@ app.use(cors())
 // Routes
 app.use('/api', router)
 // Error handllers
-// TODO 
-// !FIX: GET 404 ONLY WORKS OUTSIDE OF THE '/api/*' PATH
 app.use(errorController.get404)
 app.use(errorController.get500)
 export { app }
