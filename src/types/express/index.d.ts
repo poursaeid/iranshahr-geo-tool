@@ -15,7 +15,7 @@ interface ILocals {
 
 /* Cities type */
 interface ICities {
-    // [key: string]: string | number | Array
+    [key: string]: string | number | Array
     en: string
     fa: string
     ckb: string
