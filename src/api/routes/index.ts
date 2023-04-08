@@ -6,6 +6,6 @@ const router = Router()
 /* Base path : /api */
 router.get('/', mainApiController)
 router.use('/cities', require('./cities-routes'))
-router.get('/cities/langs', citiesController.getLangs) // get langs without the passCitiesDataHandler method
+router.get('/cities/langs', citiesController.getLangs) // get langs without using the passCitiesDataHandler Middleware
 
 export default router
