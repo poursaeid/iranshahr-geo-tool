@@ -8,6 +8,12 @@ export const getAll: RequestHandler = (req, res, next) => {
     res.status(toSend.status).send(toSend)
 }
 
+export const getLangs: RequestHandler = (req, res, next) => {
+    // Available languages
+    const toSend = getJSONRes(req, { success: true, status: 200, data: LANGS })
+    res.status(toSend.status).send(toSend)
+}
+
 export const getCititesListByLang: RequestHandler = (req, res, next) => {
     const { lang } = req.params
 
