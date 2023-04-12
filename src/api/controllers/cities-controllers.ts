@@ -1,6 +1,6 @@
 import { RequestHandler } from "express";
-import { getJSONRes } from "../../types";
-import { LANGS } from "../../configs/consts";
+import { IHTTPRes, getJSONRes } from "../../types";
+import { HTTPMessages, LANGS } from "../../configs/consts";
 
 export const getAll: RequestHandler = (req, res, next) => {
     // Get cities data from the previous middleware if there isn't any error
@@ -19,17 +19,55 @@ export const getCititesListByLang: RequestHandler = (req, res, next) => {
 
     let toSend
     // Send an Error if the lang parameter isn't available
-    if (!LANGS.includes(lang)) {
-        toSend = getJSONRes(req, { success: false, status: 422, messsage: 'The entered parameter is not available' })
+    if (!isLangAvailable(lang)) {
+        toSend = getJSONRes(req, { success: false, status: 422, messsage: HTTPMessages.wrongParam })
         res.status(toSend.status).send(toSend)
     }
-    
+
     // Get cities data from the previous middleware if there isn't any error
     const { cities } = req.locals
-    
+
     // Map to the cities data and get a list of them
     const citiesList = cities.map((city: ICities) => city[lang])
-    
+
     toSend = getJSONRes(req, { success: true, status: 200, data: citiesList })
     res.status(toSend.status).send(toSend)
+
+}
+
+// TODO: ADD SUPPORT FOR RTL PARAMETERS
+export const getCityByLang: RequestHandler = (req, res, next) => {
+    const { city, lang } = req.params
+    let toSend
+
+    // Default res to send if the city isn't available
+    let resParams: IHTTPRes = { success: false, status: 404, messsage: HTTPMessages.noData }
+
+    // check if the lang parameter is available and send 422 if there isn't any
+    if (isLangAvailable(lang)) {
+
+        // Get cities data from the previous middleware if there isn't any error
+        const { cities } = req.locals
+
+        // Map to the cities data and find the entered city
+        cities.map((item: ICities) => {
+            if (item[lang] === city) {
+                resParams = { success: true, status: 200, data: item, messsage: '' }
+            }
+        })
+
+    } else {
+        // Res for wrong parameters
+        resParams = { success: false, status: 422, messsage: HTTPMessages.wrongParam }
+    }
+
+    // Sending the res
+    toSend = getJSONRes(req, resParams)
+    res.status(toSend.status).send(toSend)
+
+}
+
+
+const isLangAvailable = (lang: string) => {
+    return LANGS.includes(lang)
 }
