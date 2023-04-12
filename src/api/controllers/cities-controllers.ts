@@ -18,19 +18,21 @@ export const getCititesListByLang: RequestHandler = (req, res, next) => {
     const { lang } = req.params
 
     let toSend
-    // Send an Error if the lang parameter isn't available
-    if (!isLangAvailable(lang)) {
-        toSend = getJSONRes(req, { success: false, status: 422, messsage: HTTPMessages.wrongParam })
-        res.status(toSend.status).send(toSend)
+    // Default res to send if the param is invalid
+    let resParams: IHTTPRes = { success: false, status: 422, messsage: HTTPMessages.wrongParam }
+
+    if (isLangAvailable(lang)) {
+
+        // Get cities data from the previous middleware if there isn't any error
+        const { cities } = req.locals
+
+        // Map to the cities data and get a list of them
+        const citiesList = cities.map((city: ICities) => city[lang])
+
+        resParams = { success: true, status: 200, data: citiesList, messsage: '' }
     }
 
-    // Get cities data from the previous middleware if there isn't any error
-    const { cities } = req.locals
-
-    // Map to the cities data and get a list of them
-    const citiesList = cities.map((city: ICities) => city[lang])
-
-    toSend = getJSONRes(req, { success: true, status: 200, data: citiesList })
+    toSend = getJSONRes(req, resParams)
     res.status(toSend.status).send(toSend)
 
 }
