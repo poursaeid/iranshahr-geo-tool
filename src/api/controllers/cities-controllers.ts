@@ -39,7 +39,7 @@ export const getCititesListByLang: RequestHandler = (req, res, next) => {
 
 // TODO: ADD SUPPORT FOR RTL PARAMETERS
 export const getCityByLang: RequestHandler = (req, res, next) => {
-    const { city, lang } = req.params
+    let { city, lang } = req.params
     let toSend
 
     // Default res to send if the city isn't available
@@ -53,7 +53,14 @@ export const getCityByLang: RequestHandler = (req, res, next) => {
 
         // Map to the cities data and find the entered city
         cities.map((item: ICities) => {
-            if (item[lang] === city) {
+            let cityItem = item[lang]
+            // Convert to lower case if selected lang is english
+            if (lang === 'en') {
+                cityItem = cityItem.toLowerCase()
+                city = city.toLowerCase()
+            }
+
+            if (cityItem === city) {
                 resParams = { success: true, status: 200, data: item, messsage: '' }
             }
         })
