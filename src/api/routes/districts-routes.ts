@@ -8,4 +8,5 @@ router.use(passDistrictsDataMiddleware)
 
 // Routes : '/api/districts/fa'
 router.get('/', districtsController.getAll)
+router.get('/provinces', districtsController.getProvincesList)
 export = router
