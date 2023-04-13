@@ -4,6 +4,7 @@ import { getJSONRes } from "../../types";
 // Sub modules
 export * as errorController from './error-controllers'
 export * as citiesController from './cities-controllers'
+export * as districtsController from './districts-controller'
 
 // '/api' index controller
 export const mainApiController: RequestHandler = (req, res, next) => {

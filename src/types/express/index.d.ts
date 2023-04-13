@@ -10,6 +10,7 @@ declare namespace Express {
 /* Express request local object */
 interface ILocals {
     cities: ArrayL<ICities | object>
+    districts: Array<object>
 }
 
 
