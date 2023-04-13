@@ -3,7 +3,7 @@ import { jsonReader } from "../utils";
 import { CITIES_PATH } from "../../configs";
 
 /** Read and pass the cities data to the request object */
-export const passCitiesDataHandler: RequestHandler = (req, res, next) => {
+export const passCitiesDataMiddleware: RequestHandler = (req, res, next) => {
     jsonReader(CITIES_PATH, (err, data) => {
         // Check for errors and pass it to the next error handler if there is any.
         if (err) next(err)

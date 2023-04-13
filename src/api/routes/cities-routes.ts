@@ -1,10 +1,10 @@
 import { Router } from "express";
 import { citiesController } from "../controllers";
-import { passCitiesDataHandler } from "../Middlewares";
+import { passCitiesDataMiddleware } from "../Middlewares";
 
 const router = Router()
 // Middlewares
-router.use(passCitiesDataHandler)
+router.use(passCitiesDataMiddleware)
 
 // Routes : '/api/cities'
 router.get('/', citiesController.getAll)
