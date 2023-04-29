@@ -28,7 +28,11 @@ interface ICities {
 
 /* Provinces type */
 interface IRegions {
-    [key: string]: string | number | object
-    lat:number
-    long:number
+    [key: string]: ITowns
+}
+
+interface ITowns {
+    [key: string]: object
+    lat: number
+    long: number
 }

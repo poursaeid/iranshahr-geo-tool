@@ -2,6 +2,8 @@ import { RequestHandler } from "express";
 import { IHTTPRes, getJSONRes } from "../../types";
 import { HTTPMessages } from "../../configs/consts";
 
+// TODO: DRY 
+
 export const getAll: RequestHandler = (req, res, next) => {
     // Get data from the previous middleware if there isn't any error
     const toSend = getJSONRes(req, { success: true, status: 200, data: req.locals.districts })
@@ -67,6 +69,37 @@ export const getTownsList: RequestHandler = (req, res, next) => {
         for (const citiesKey in provinces) if (citiesKey === city) {
             const townsKeys = Object.keys(provinces[citiesKey])
             resInfo = { success: true, status: 200, data: townsKeys }
+            break
+        }
+        break
+    }
+    else {
+        resInfo = { success: false, status: 422, messsage: HTTPMessages.wrongParam }
+    }
+
+    // Sending the responce
+    const toSend = getJSONRes(req, resInfo)
+    res.status(toSend.status).send(toSend)
+}
+
+export const getTownInfo: RequestHandler = (req, res, next) => {
+    // Set default response info as 404
+    let resInfo: IHTTPRes = { success: false, status: 404, messsage: HTTPMessages.noData }
+
+    // Request params 
+    const { city, province, town } = req.params
+    // Data from the previous Middleware
+    const districts = req.locals.districts
+
+    // Check for data
+    for (const key in districts) if (key === province) {
+        const provinces = districts[key]
+        for (const citiesKey in provinces) if (citiesKey === city) {
+            const towns = provinces[citiesKey]
+            for (const townKey in towns) if (townKey === town) {
+                resInfo = { success: true, status: 200, data: towns[townKey] }
+                break
+            }
             break
         }
         break
