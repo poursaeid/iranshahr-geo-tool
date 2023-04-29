@@ -12,7 +12,7 @@ export interface IHTTPRes {
     path?: string
     data?: Array<object> | object
 }
-
+/** Get req object and responce info to create a save format for every api */
 export const getJSONRes = (req: Request, params: IHTTPRes): IHTTPRes => {
     const toReturn: IHTTPRes = { ...params, path: req.originalUrl }
     return toReturn
