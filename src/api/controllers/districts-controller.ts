@@ -17,7 +17,7 @@ export const getProvincesList: RequestHandler = (req, res, next) => {
     res.status(toSend.status).send(toSend)
 }
 
-export const getCitiesByProvince: RequestHandler = (req, res, next) => {
+export const getCitiesListByProvince: RequestHandler = (req, res, next) => {
     // Default res to send if the provine isn't available
     let resParams: IHTTPRes = { success: false, status: 404, messsage: HTTPMessages.noData }
 
@@ -32,7 +32,7 @@ export const getCitiesByProvince: RequestHandler = (req, res, next) => {
     if (provinces.includes(province)) {
         // Get district data
         for (const key in districts) if (key === province) {
-            resParams = { success: true, status: 200, data: districts[key] }
+            resParams = { success: true, status: 200, data: Object.keys(districts) }
         }
     }
     else {
