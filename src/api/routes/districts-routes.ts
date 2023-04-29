@@ -10,5 +10,6 @@ router.use(passDistrictsDataMiddleware)
 router.get('/', districtsController.getAll)
 router.get('/provinces', districtsController.getProvincesList)
 router.get('/cities/:province', districtsController.getCitiesListByProvince)
+router.get('/towns/:province-:city', districtsController.getTownsList)
 
 export = router

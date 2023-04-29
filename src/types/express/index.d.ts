@@ -9,8 +9,8 @@ declare namespace Express {
 
 /* Express request local object */
 interface ILocals {
-    cities: ArrayL<ICities | object>
-    districts: Array<object>
+    cities: Array<ICities>
+    districts: Array<IRegions>
 }
 
 
@@ -24,4 +24,11 @@ interface ICities {
     latitude: number
     longitude: number
     elevation: number
+}
+
+/* Provinces type */
+interface IRegions {
+    [key: string]: string | number | object
+    lat:number
+    long:number
 }
