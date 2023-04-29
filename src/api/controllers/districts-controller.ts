@@ -32,7 +32,7 @@ export const getCitiesListByProvince: RequestHandler = (req, res, next) => {
     if (provinces.includes(province)) {
         // Get district data
         for (const key in districts) if (key === province) {
-            resParams = { success: true, status: 200, data: Object.keys(districts) }
+            resParams = { success: true, status: 200, data: Object.keys(districts[key]) }
         }
     }
     else {
