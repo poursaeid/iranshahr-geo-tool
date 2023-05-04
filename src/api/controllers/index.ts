@@ -7,7 +7,7 @@ export * as citiesController from './cities-controllers'
 export * as districtsController from './districts-controller'
 
 /* Redirect Index page to the /api end point */
-export const indexRedirectController: RequestHandler = (req, res, next) => res.redirect('/api')
+export const indexRedirectController: RequestHandler = (req, res, next) => res.redirect('/docs')
 
 /* '/api' index controller */
 export const mainApiController: RequestHandler = (req, res, next) => {

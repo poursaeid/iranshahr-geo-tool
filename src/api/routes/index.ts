@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { citiesController, mainApiController } from "../controllers";
+import { citiesController, indexRedirectController } from "../controllers";
 
 const router = Router()
 
 /* Base path : /api */
-router.get('/', mainApiController)
+router.get('/', indexRedirectController)
 router.use('/cities', require('./cities-routes'))
 router.get('/cities/langs', citiesController.getLangs) // get langs without using the passCitiesDataHandler Middleware
 router.use('/districts/fa', require('./districts-routes'))
