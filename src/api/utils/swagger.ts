@@ -9,7 +9,7 @@ const options: swaggerJSDocs.Options = {
     definition: {
         info: { title, version },
     },
-    apis: ['./src/api/routes/index.ts']
+    apis: ['./src/api/routes/*.ts']
 }
 
 const swaggerSpec = swaggerJSDocs(options)
