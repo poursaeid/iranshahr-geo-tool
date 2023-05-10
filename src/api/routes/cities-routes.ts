@@ -52,7 +52,7 @@ router.get('/list/:lang', citiesController.getCititesListByLang)
  *            required: true
  *            description: A string of available city.
  *          - in: path
- *            name: langs
+ *            name: lang
  *            required: true
  *            description: A string of supported languages.
  *      responses:
