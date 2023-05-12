@@ -7,7 +7,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 import router from './api/routes'
 import { errorController, indexRedirectController } from './api/controllers'
 import { swaggerDocs } from './api/utils/swagger'
-import { graphqlSetup } from './setup-qraphql'
+import { graphqlSetup } from './setup-graphql'
 import { HTTP_SERVER } from './types'
 
 // Setup express and appolo server
