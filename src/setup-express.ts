@@ -28,7 +28,7 @@ let httpServer: HTTP_SERVER
     // Routes
     app.all('/', indexRedirectController)
     swaggerDocs(app) // Swagger at /docs 
-    app.use('/graph',expressMiddleware(apolloServer)) // Apollo server at /graph
+    app.use('/graphql',expressMiddleware(apolloServer)) // Apollo server at /graph
     app.use('/api', router) // API Endpoint
 
     // Error handllers
