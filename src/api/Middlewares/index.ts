@@ -1,5 +1,5 @@
 import { RequestHandler } from "express";
-import { jsonReader } from "../utils";
+import { jsonReader } from "../../utils";
 import { CITIES_PATH, DISTRICTS_PATH } from "../../configs";
 
 /** Read and pass the cities data to the request object */

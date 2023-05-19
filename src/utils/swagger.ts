@@ -1,7 +1,7 @@
 import { Express } from 'express'
 import swaggerJSDocs from 'swagger-jsdoc'
 import swaggerUI from 'swagger-ui-express'
-import { version } from '../../../package.json'
+import { version } from '../../package.json'
 
 const title = 'Iranshahr-geo REST API Docs'
 

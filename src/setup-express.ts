@@ -6,7 +6,7 @@ import { expressMiddleware } from '@apollo/server/express4';
 
 import router from './api/routes'
 import { errorController, indexRedirectController } from './api/controllers'
-import { swaggerDocs } from './api/utils/swagger'
+import { swaggerDocs } from './utils/swagger'
 import { graphqlSetup } from './setup-graphql'
 import { HTTP_SERVER } from './types'
 
@@ -24,11 +24,11 @@ let httpServer: HTTP_SERVER
     // Middlewares
     app.use(cors()) // Enable All CORS Requests
     app.use(express.json()) // JSON Parser
-    
+
     // Routes
     app.all('/', indexRedirectController)
     swaggerDocs(app) // Swagger at /docs 
-    app.use('/graphql',expressMiddleware(apolloServer)) // Apollo server at /graph
+    app.use('/graphql', expressMiddleware(apolloServer)) // Apollo server at /graph
     app.use('/api', router) // API Endpoint
 
     // Error handllers
