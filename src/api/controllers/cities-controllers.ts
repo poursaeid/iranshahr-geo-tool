@@ -37,7 +37,6 @@ export const getCititesListByLang: RequestHandler = (req, res, next) => {
 
 }
 
-// TODO: ADD SUPPORT FOR RTL PARAMETERS
 export const getCityByLang: RequestHandler = (req, res, next) => {
     let { city, lang } = req.params
     let toSend

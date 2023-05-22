@@ -1,7 +1,10 @@
 import { Router } from "express";
 import { citiesController, indexRedirectController } from "../controllers";
+import { decodeURIMiddleware } from "../Middlewares";
 
 const router = Router()
+
+router.use(decodeURIMiddleware)
 
 /* Base path : /api */
 router.get('/', indexRedirectController)

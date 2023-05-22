@@ -21,3 +21,13 @@ export const passDistrictsDataMiddleware: RequestHandler = (req, res, next) => {
     req.locals = { ...req.locals, districts: data }
     next()
 }
+
+export const decodeURIMiddleware: RequestHandler = (req, res, next) => {
+    try {
+        req.originalUrl = decodeURI(req.originalUrl)
+        next()
+    } catch (e) { // Catches a malformed URI
+        console.error(e);
+        next(e)
+    }
+}
